@@ -1,3 +1,4 @@
+import { getExtensionSettings } from '../../utils';
 import { Logger } from '../dataType/Logger';
 import { CommandOutput, executeCommand } from '@pnp/cli-microsoft365';
 
@@ -28,8 +29,18 @@ export class CliExecuter {
       let cmdOutput: string = '';
       let cmdOutputIncludingStderr: string = '';
       const outputChannel = Logger.channel;
+      const isDebug = getExtensionSettings('runCLICommandsInDebug', false);
 
-      Logger.info(`Running CLI command: ${command}`);
+      if (isDebug) {
+        if (!args) {
+          args = {};
+        }
+
+        if (!args.debug) {
+          args.debug = true;
+        }
+      }
+
       executeCommand(command, { output, ...args }, {
         stdout: (message: string) => {
           message = message.toString();

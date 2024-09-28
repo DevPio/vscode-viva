@@ -178,6 +178,12 @@
 					"type": "boolean",
 					"default": "true",
 					"description": "Show the tenant-wide extensions in the account view."
+				},
+				"spfx-toolkit.runCLICommandsInDebug": {
+					"title": "Run CLI commands in debug",
+					"type": "boolean",
+					"default": false,
+					"description": "Enable or disable running CLI commands in debug mode."
 				}
 			}
 		},
